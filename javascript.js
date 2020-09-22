@@ -45,6 +45,41 @@ document.getElementById("startreset").onclick = function() {
     }
 }
 
+//clicking on an answer box
+for(i=1; i<5; i++){
+    document.getElementById("box"+i).onclick = function(){
+    //check if playing
+    if(playing == true){
+        if(this.innerHTML == correctAnswer){
+            //correct answer
+
+            //increase score by 1
+            score++;
+            document.getElementById("scorevalue").innerHTML = score;
+
+            //show correct box and hide wrong box
+            hide("wrong");
+            show("correct");
+            setTimeout(function(){
+                hide("correct");
+            }, 1000);
+
+            //generate new Q&A
+            generateQA();
+
+        }else{
+            //wrong answer
+            hide("correct");
+            show("wrong");
+            setTimeout(function(){
+                hide("wrong");
+            }, 1000);
+
+            }
+        }
+    }
+}
+
 //if click on answer box
     //if playing
         //correct
