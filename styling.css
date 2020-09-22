@@ -99,14 +99,16 @@ html{
 }
 
 .box:hover, #startreset:hover{
-    background-color: #FEAE51FF;
+    /*background-color: #FEAE51FF;
     color: white;
     box-shadow: 0px 4px #b25f01;
     -moz-box-shadow: 0px 4px #b25f01;
-    -webkit-box-shadow: 0px 4px #b25f01;
+    -webkit-box-shadow: 0px 4px #b25f01;*/
 }
 
 .box:active, #startreset:active{
+    background-color: #FEAE51FF;
+    color: white;
     box-shadow: 0px 0px #b25f01;
     -moz-box-shadow: 0px 0px #b25f01;
     -webkit-box-shadow: 0px 0px #b25f01;

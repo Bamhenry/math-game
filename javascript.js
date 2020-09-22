@@ -80,16 +80,6 @@ for(i=1; i<5; i++){
     }
 }
 
-//if click on answer box
-    //if playing
-        //correct
-            //yes
-                //increase score by 1
-                //show correct box for 1 sec
-                //generate new question and answers
-            //no
-                //show try again box for 1 sec
-
 //functions
 
 //start counter
