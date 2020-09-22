@@ -2,6 +2,7 @@ var playing = false;
 var score;
 var action;
 var timeremaining;
+var correctAnswer;
 
 //if click on the start/reset button
 document.getElementById("startreset").onclick = function() {
@@ -27,6 +28,9 @@ document.getElementById("startreset").onclick = function() {
         timeremaining = 60;
         document.getElementById("timeremainingvalue").innerHTML = timeremaining;
 
+        //hide game over box
+        hide("gameOver");
+
 
         //change button to reset game
         document.getElementById("startreset").innerHTML = "Reset Game";
@@ -34,23 +38,12 @@ document.getElementById("startreset").onclick = function() {
         //start countdown
         startCountdown();
 
+        //generate a new Q&A
+        generateQA();
+
 
     }
 }
-    //if playing
-        //reload page
-
-    //if not playing
-        //set score to 0
-        //show countdown box
-        //reduce time by 1 sec
-
-            //time left
-                //yes->continue
-                //no->game over and change button to start game
-
-        //change button to reset game
-        //generate new question and answers
 
 //if click on answer box
     //if playing
@@ -72,11 +65,15 @@ function startCountdown(){
         if(timeremaining == 0){  //game over
             stopCountdown();
             show("gameOver");
+
             document.getElementById("gameOver").innerHTML = "<p>Game Over!</p><p>Your score is " + score +".</p>";
+
             hide("timeremaining");
             hide("correct");
             hide("wrong");
+
             playing = false;
+            document.getElementById("startreset").innerHTML = "Start Game";
         }
     }, 1000);
 }
@@ -94,4 +91,31 @@ function hide(Id){
 //show an element
 function show(Id){
     document.getElementById(Id).style.display = "block";
+}
+
+//generate question and multiple answers
+function generateQA(){
+    var x = 1+ Math.round(9*Math.random());
+    var y = 1+ Math.round(9*Math.random());
+    correctAnswer = x*y;
+    document.getElementById("question").innerHTML = x + "x" + y;
+
+    var correctPosition = 1+ Math.round(3*Math.random());
+
+    document.getElementById("box"+correctPosition).innerHTML = correctAnswer;  //fill one box with correct answer
+
+    //fill other boxes with wrong answers
+    var answers = [correctAnswer];
+
+    for(i=1; i<5; i++){
+        if(i != correctPosition) {
+            var wrongAnswer;
+            do{
+                wrongAnswer = (1+ Math.round(9*Math.random())) * (1+ Math.round(9*Math.random()));  //a wrong answer
+            }while(answers.indexOf(wrongAnswer) > -1)
+
+            document.getElementById("box"+i).innerHTML = wrongAnswer;
+            answers.push(wrongAnswer);
+        }
+    }
 }
